@@ -1,0 +1,3 @@
+#<name> is the name of the grave yard they spawn at
+respawnMessage: '&cRespawned at <name> Grave yard'
+teleportMessage: '&aTeleported to <name>'
