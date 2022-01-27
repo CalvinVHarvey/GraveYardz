@@ -30,6 +30,7 @@ You can edit the grave-yard files directly or you can used the commands provided
   - graveyard.reload - gives access to the '/gv reload' command to reload the main config file. 
   - graveyard.tp - gives access to the '/gv tp' command. 
   - graveyard.del - gives access to the '/gv del' command. 
+  - graveyard.exempt - Players with this permission will just respawn normally and not respawn at the nearest graveyard.
 
 ## graveyards.yml Tutorial
 
