@@ -34,6 +34,8 @@ You can edit the grave-yard files directly or you can used the commands provided
 
 ## graveyards.yml Tutorial
 
+- This isn't necessary, but might be useful to some, as commands do the same thing automatically, but some people may want to know
+
 - The main section must be named the same as the name of the grave yard otherwise it will not work correctly!
 
 - The 'world:' Section is for the name of the world that the graveyard is in
