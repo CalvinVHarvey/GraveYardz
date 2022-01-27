@@ -1,0 +1,9 @@
+name: GraveYardz
+version: 1.0
+api-version: 1.18
+author: NorthAlaska
+main: me.NorthAlaska.Graveyards.Main
+description: Creates graveyards that players will spawn at when they die
+
+commands:
+  gv:
