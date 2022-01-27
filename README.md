@@ -57,3 +57,18 @@ Memorial_Park:  #This must be the same as the name
   y: 70   #These are the coordinates
   z: 404
 ```
+
+## Main Config
+
+This is just the default config file, as you can see there are some default values.
+
+- 'respawnMessage:' Is just the message the player gets sent when they respawn at a grave yard
+- 'teleportMessage:' This is the message the player gets sent when they use the /gv tp command to teleport to a grave yard 
+  
+Traditional Essentials based color codes will work as well. 
+
+```
+#<name> is the name of the grave yard they spawn at
+respawnMessage: '&cRespawned at <name> Grave yard'
+teleportMessage: '&aTeleported to <name>'
+```
