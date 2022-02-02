@@ -45,20 +45,16 @@ You can edit the grave-yard files directly or you can used the commands provided
 - And for the x, y, and z sections are the corresponding coordinates. 
 
 ```
-Pixar_Memorial_Grave: #This must be the same as the Name!!!
-  name: Pixar_Memorial_Grave  #Name of the grave yard
-  world: world  #World that it is located in must be the name of the world
-  ID: 3 #ID of the graveyard
-  x: 136
-  y: 64
-  z: 225
-Memorial_Park:  #This must be the same as the name
-  name: Memorial_Park  #This is the name of the graveyard 
-  world: world #This is the name of the world the graveyard is in
-  ID: 2 #This is the id it can not have the same id as another
-  x: 17
-  y: 70   #These are the coordinates
-  z: 404
+memorial_park: # Name must be the same as the section
+  name: memorial_park  # Name of the graveyard
+  location:    # Location section containing data for the location 
+    world: world
+    x: 23.754032567142353
+    y: 71.0
+    z: 336.5333318830833
+    pitch: 11.265702
+    yaw: 68.88659
+  ID: 1   # Can be anything just a unique number for this graveyard
 ```
 
 ## Main Config
