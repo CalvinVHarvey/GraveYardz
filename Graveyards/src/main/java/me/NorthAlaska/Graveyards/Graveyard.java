@@ -11,17 +11,20 @@ public class Graveyard {
 	
 	private String world;
 	
+	private Location loc;
+	
 	//General Information for the Grave Yard
 	private String name;
 	private int id;
 	
-	public Graveyard(String name, String world, int id, int x, int y, int z) {
-		this.x = x;
-		this.y = y;
-		this.z = z;
+	public Graveyard(String name, int id, Location loc) {
+		this.loc = loc;
+		this.x = loc.getBlockX();
+		this.y = loc.getBlockY();
+		this.z = loc.getBlockZ();
 		this.name = name;
 		this.id = id;
-		this.world = world;
+		this.world = loc.getWorld().getName();
 	}
 	
 	//Getter Methods
@@ -54,6 +57,16 @@ public class Graveyard {
 		this.x = x;
 		this.y = y;
 		this.z = z;
+	}
+	
+	public void setLocation(Location loc) {
+		this.loc = loc;
+		setLocation(loc.getBlockX(), loc.getBlockY(), loc.getBlockZ());
+		setWorld(loc.getWorld().getName());
+	}
+	
+	public Location getLocation() {
+		return loc;
 	}
 	
 	public void setWorld(String name) {

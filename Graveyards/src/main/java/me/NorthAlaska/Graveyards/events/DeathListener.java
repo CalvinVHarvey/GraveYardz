@@ -35,8 +35,7 @@ public class DeathListener implements Listener{
 				Bukkit.getConsoleSender().sendMessage("Closest is null");
 				return;
 			}
-			Location loc = new Location(plugin.getServer().getWorld(closest.getWorld()), (double)closest.getX(), (double)closest.getY(), (double)closest.getZ());
-			e.setRespawnLocation(loc);
+			e.setRespawnLocation(closest.getLocation());
 			String message = plugin.getConfig().getString("respawnMessage").replaceAll("<name>", closest.getName());
 			p.sendMessage(Utils.chat(message));
 		}else {

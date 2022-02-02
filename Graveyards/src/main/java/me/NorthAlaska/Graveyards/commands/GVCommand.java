@@ -49,7 +49,7 @@ public class GVCommand implements CommandExecutor{
 			return true;
 		}
 		if (args[0].equalsIgnoreCase("info")) {
-			p.sendMessage(Utils.chat("&7GraveYardz Plugin v1.0 - Players who don't have exemption spawn at nearest GraveYard when they die"));
+			p.sendMessage(Utils.chat("&7GraveYardz Plugin v1.1.0 - Players who don't have exemption spawn at nearest GraveYard when they die"));
 			return true;
 		}
 		if (p.hasPermission("graveyard.admin")) {
@@ -100,8 +100,7 @@ public class GVCommand implements CommandExecutor{
 			p.sendMessage(Utils.chat("&cThere are no grave yards in this world!"));
 			return;
 		}
-		Location loc = new Location(plugin.getServer().getWorld(closest.getWorld()), (double)closest.getX(), (double)closest.getY(), (double)closest.getZ());
-		p.teleport(loc);
+		p.teleport(closest.getLocation());
 		String message = plugin.getConfig().getString("teleportMessage").replaceAll("<name>", closest.getName());
 		p.sendMessage(Utils.chat(message));
 	}
@@ -117,22 +116,16 @@ public class GVCommand implements CommandExecutor{
 				p.sendMessage(Utils.chat("&cThat Graveyard already exists!"));
 				return;
 			}
-			Graveyard temp = new Graveyard(name, loc.getWorld().getName(), id, (int)loc.getX(), (int)loc.getY(), (int)loc.getZ());
+			Graveyard temp = new Graveyard(name, id, loc);
 			
 			//Submitting Data to grave-yards file in order to save it 
 			plugin.getGraves().createSection(name);
 			plugin.getGraves().createPath(plugin.getGraves().getConfigurationSection(name), "name");
-			plugin.getGraves().createPath(plugin.getGraves().getConfigurationSection(name), "world");
+			plugin.getGraves().createPath(plugin.getGraves().getConfigurationSection(name), "location");
 			plugin.getGraves().createPath(plugin.getGraves().getConfigurationSection(name), "ID");
-			plugin.getGraves().createPath(plugin.getGraves().getConfigurationSection(name), "x");
-			plugin.getGraves().createPath(plugin.getGraves().getConfigurationSection(name), "y");
-			plugin.getGraves().createPath(plugin.getGraves().getConfigurationSection(name), "z");
 			plugin.getGraves().getConfigurationSection(name).set("name", temp.getName());
-			plugin.getGraves().getConfigurationSection(name).set("world", temp.getWorld());
+			plugin.getGraves().getConfigurationSection(name).set("location", p.getLocation().serialize());
 			plugin.getGraves().getConfigurationSection(name).set("ID", temp.getID());;
-			plugin.getGraves().getConfigurationSection(name).set("x", temp.getX());
-			plugin.getGraves().getConfigurationSection(name).set("y", temp.getY());
-			plugin.getGraves().getConfigurationSection(name).set("z", temp.getZ());
 			plugin.getBaseData().save();
 			
 			plugin.getGraveyards().add(temp);
@@ -148,11 +141,8 @@ public class GVCommand implements CommandExecutor{
 			String name = args[1];
 			int index = plugin.findName(name);
 			if (index != -1) {
-				plugin.getGraves().getConfigurationSection(plugin.getGraveyards().get(index).getName()).set("world", loc.getWorld().getName());
-				plugin.getGraves().getConfigurationSection(plugin.getGraveyards().get(index).getName()).set("x", (int)loc.getX());
-				plugin.getGraves().getConfigurationSection(plugin.getGraveyards().get(index).getName()).set("y", (int)loc.getY());
-				plugin.getGraves().getConfigurationSection(plugin.getGraveyards().get(index).getName()).set("z", (int)loc.getZ());
-				plugin.getGraveyards().get(index).setLocation((int)loc.getX(), (int)loc.getY(), (int)loc.getZ());
+				plugin.getGraves().getConfigurationSection(plugin.getGraveyards().get(index).getName()).set("location", p.getLocation().serialize());
+				plugin.getGraveyards().get(index).setLocation(p.getLocation());
 				plugin.getBaseData().save();
 				p.sendMessage(Utils.chat("&aSuccessfully Updated Grave Yard Location!"));
 			}else {

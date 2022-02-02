@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -34,11 +35,11 @@ public class Main extends JavaPlugin{
 			Bukkit.getConsoleSender().sendMessage(key);
 			String name = graves.getConfigurationSection(key).getString("name");
 			int id = graves.getConfigurationSection(key).getInt("ID");
-			String world = graves.getConfigurationSection(key).getString("world");
-			int x = graves.getConfigurationSection(key).getInt("x");			
-			int y = graves.getConfigurationSection(key).getInt("y");
-			int z = graves.getConfigurationSection(key).getInt("z");
-			Graveyard temp = new Graveyard(name, world, id, x, y, z);
+			ConfigurationSection cur = graves.getConfigurationSection(key).getConfigurationSection("location");
+			Location world = new Location(this.getServer().getWorld(cur.getString("world")), cur.getDouble("x"), cur.getDouble("y"), cur.getDouble("z"));
+			world.setPitch((float)cur.getDouble("pitch"));
+			world.setYaw((float)cur.getDouble("yaw"));
+			Graveyard temp = new Graveyard(name, id, world);
 			graveyard.add(temp);
 		}
 	}
